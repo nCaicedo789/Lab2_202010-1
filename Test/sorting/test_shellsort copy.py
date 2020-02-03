@@ -22,39 +22,39 @@
 
 import unittest 
 import config 
-from Sorting import selectionsort as sort
+from Sorting import shellsort as sort
 from DataStructures import listiterator as it
 from ADT import list as slt
 import copy 
 
-hola
 
-class insertionSortTest (unittest.TestCase):
+
+class shellSortTest (unittest.TestCase):
 
     #list_type = 'ARRAY_LIST'
     list_type = 'SINGLE_LINKED_LIST'
 
     def setUp (self):
-        self.book1 = {'id':'1', 'book_title':'Title 1', 'author':'author 1'}
-        self.book2 = {'id':'2', 'book_title':'Title 2', 'author':'author 2'}
-        self.book3 = {'id':'3', 'book_title':'Title 3', 'author':'author 3'}
-        self.book4 = {'id':'4', 'book_title':'Title 4', 'author':'author 4'}
-        self.book5 = {'id':'5', 'book_title':'Title 5', 'author':'author 5'}
-        self.book6 = {'id':'6', 'book_title':'Title 6', 'author':'author 6'}
-        self.book7 = {'id':'7', 'book_title':'Title 7', 'author':'author 7'}
-        self.book8 = {'id':'8', 'book_title':'Title 8', 'author':'author 8'}
-        self.book9 = {'id':'9', 'book_title':'Title 9', 'author':'author 9'}
-        self.book10 = {'id':'10', 'book_title':'Title 10', 'author':'author 10'}
-        self.book11 = {'id':'7', 'book_title':'Title 11', 'author':'author 11'}
-        self.book12 = {'id':'8', 'book_title':'Title 12', 'author':'author 12'}
-        self.book13 = {'id':'9', 'book_title':'Title 13', 'author':'author 13'}
-        self.book14 = {'id':'10', 'book_title':'Title 14', 'author':'author 14'}
+        self.book1 = {'book_id':'1', 'book_title':'Title 1', 'author':'author 1'}
+        self.book2 = {'book_id':'2', 'book_title':'Title 2', 'author':'author 2'}
+        self.book3 = {'book_id':'3', 'book_title':'Title 3', 'author':'author 3'}
+        self.book4 = {'book_id':'4', 'book_title':'Title 4', 'author':'author 4'}
+        self.book5 = {'book_id':'5', 'book_title':'Title 5', 'author':'author 5'}
+        self.book6 = {'book_id':'6', 'book_title':'Title 6', 'author':'author 6'}
+        self.book7 = {'book_id':'7', 'book_title':'Title 7', 'author':'author 7'}
+        self.book8 = {'book_id':'8', 'book_title':'Title 8', 'author':'author 8'}
+        self.book9 = {'book_id':'9', 'book_title':'Title 9', 'author':'author 9'}
+        self.book10 = {'book_id':'10', 'book_title':'Title 10', 'author':'author 10'}
+        self.book11 = {'book_id':'7', 'book_title':'Title 11', 'author':'author 11'}
+        self.book12 = {'book_id':'8', 'book_title':'Title 12', 'author':'author 12'}
+        self.book13 = {'book_id':'9', 'book_title':'Title 13', 'author':'author 13'}
+        self.book14 = {'book_id':'10', 'book_title':'Title 14', 'author':'author 14'}
 
     def tearDown (self):
         pass
 
     def less( self, element1, element2):
-        if int(element1['id']) <  int(element2['id']):
+        if int(element1['book_id']) <  int(element2['book_id']):
             return True
         return False
 
@@ -96,7 +96,7 @@ class insertionSortTest (unittest.TestCase):
             #result = "".join(str(key) + ": " + str(value) + ",  " for key, value in element.items())
             #print (result)
         print ("Sorting ....")
-        sort.selectionSort (self.lst, self.less)
+        sort.shellSort (self.lst, self.less)
         self.assertTrue(self.verifySorting(self.lst, self.less))
     
 
@@ -125,7 +125,7 @@ class insertionSortTest (unittest.TestCase):
             result = "".join(str(key) + ": " + str(value) + ",  " for key, value in element.items())
             print (result)
         print ("sorting ....")
-        sort.selectionSort (self.lst, self.less)
+        sort.shellSort (self.lst, self.less)
         self.assertTrue(self.verifySorting(self.lst, self.less))
 
     def test_orderedElements (self):
@@ -151,7 +151,7 @@ class insertionSortTest (unittest.TestCase):
             result = "".join(str(key) + ": " + str(value) + ",  " for key, value in element.items())
             print (result)
         print ("sorting ....")
-        sort.selectionSort (self.lst, self.less)
+        sort.shellSort (self.lst, self.less)
         self.assertTrue(self.verifySorting(self.lst, self.less))
 
     def test_oneElement (self):
@@ -168,7 +168,7 @@ class insertionSortTest (unittest.TestCase):
             result = "".join(str(key) + ": " + str(value) + ",  " for key, value in element.items())
             print (result)
         print ("sorting ....")
-        sort.selectionSort (self.lst, self.less)
+        sort.shellSort (self.lst, self.less)
         iterator = it.newIterator(self.lst)
         self.assertTrue(self.verifySorting(self.lst, self.less))
 
@@ -201,7 +201,7 @@ class insertionSortTest (unittest.TestCase):
             result = "".join(str(key) + ": " + str(value) + ",  " for key, value in element.items())
             print (result)
         print ("sorting ....")
-        sort.selectionSort (self.lst, self.less)
+        sort.shellSort (self.lst, self.less)
         self.assertTrue(self.verifySorting(self.lst, self.less))
 
 
