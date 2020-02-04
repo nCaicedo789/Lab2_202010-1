@@ -27,7 +27,6 @@ from DataStructures import listiterator as it
 from ADT import list as slt
 import copy 
 
-hola
 
 class insertionSortTest (unittest.TestCase):
 

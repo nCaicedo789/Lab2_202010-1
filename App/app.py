@@ -32,6 +32,8 @@ import csv
 from ADT import list as lt
 from DataStructures import listiterator as it
 from DataStructures import liststructure as lt
+from Sorting import shellsort as sort
+import copy
 
 from time import process_time 
 
@@ -64,6 +66,8 @@ def printMenu():
     print("2- Contar los elementos de la Lista")
     print("3- Contar elementos filtrados por palabra clave")
     print("4- Consultar elementos a partir de dos listas")
+    print('5-lista ordenada por shellsort')
+    print('6-verificar ordenamiento')
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -90,6 +94,31 @@ def countElementsByCriteria(criteria, column, lst):
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
     return 0
+def less(element1, element2):
+        if int(element1['id']) >  int(element2['id']):
+            return True
+        return False
+def sorting_shell(lst):
+    sort.shellSort(lst, less)
+    
+
+def verifySorting(lista, compFunction):
+        iterator = it.newIterator(lista)
+        count=0
+        prev_element=None
+        while  it.hasNext(iterator):
+            element = it.next(iterator)
+            #result = "".join(str(key) + ": " + str(value) + ",  " for key, value in element.items())
+            #print (result)
+            if count > 0:
+                if compFunction(element, prev_element):
+                    return False
+            count+=1
+            prev_element=copy.copy(element)
+        return True
+    
+    
+
 
 def main():
     lista = None 
@@ -98,8 +127,10 @@ def main():
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                lista = loadCSVFile("Data/test.csv") #llamar funcion cargar datos
+                lista = loadCSVFile("Data/Small.csv") #llamar funcion cargar datos
                 print("Datos cargados, ",lista['size']," elementos cargados")
+                
+                
             elif int(inputs[0])==2: #opcion 2
                 if lista==None or lista['size']==0: #obtener la longitud de la lista
                     print("La lista esta vacía")    
@@ -120,6 +151,17 @@ def main():
                     print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
+            elif int(inputs[0])==5:
+                sorting_shell(lista)
+            elif int(inputs[0])==6:
+                print(verifySorting(lista, less))
+                #print(lista['first'])
+                #for element in lista:
+                    #print(element)
+
+
+                
+                
                 
 if __name__ == "__main__":
     main()
