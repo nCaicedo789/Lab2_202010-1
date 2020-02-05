@@ -32,7 +32,9 @@ import csv
 from ADT import list as lt
 from DataStructures import listiterator as it
 from DataStructures import liststructure as lt
-from Sorting import shellsort as sort
+from Sorting import shellsort as sortshell
+from Sorting import insertionsort as sortinsertion
+from Sorting import selectionsort as sortselection
 import copy
 
 from time import process_time 
@@ -66,7 +68,7 @@ def printMenu():
     print("2- Contar los elementos de la Lista")
     print("3- Contar elementos filtrados por palabra clave")
     print("4- Consultar elementos a partir de dos listas")
-    print('5-lista ordenada por shellsort')
+    print('5- ordenar lista')
     print('6-verificar ordenamiento')
     print("0- Salir")
 
@@ -95,12 +97,30 @@ def countElementsByCriteria(criteria, column, lst):
     """
     return 0
 def less(element1, element2):
+        if int(element1['id']) <  int(element2['id']):
+            return True
+        return False
+def greater(element1, element2):
         if int(element1['id']) >  int(element2['id']):
             return True
         return False
-def sorting_shell(lst):
-    sort.shellSort(lst, less)
+def sorting_shell(lst, compFunction):
+    t1_start = process_time()
+    sortshell.shellSort(lst, compFunction)
+    t1_stop = process_time() #tiempo final
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     
+def sorting_insertion(lst, compFunction):
+    t1_start = process_time()
+    sortinsertion.insertionSort(lst, compFunction)
+    t1_stop = process_time() #tiempo final
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
+
+def sorting_selection(lst, compFunction):
+    t1_start = process_time()
+    sortselection.selectionSort(lst, compFunction)
+    t1_stop = process_time() #tiempo final
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
 
 def verifySorting(lista, compFunction):
         iterator = it.newIterator(lista)
@@ -129,8 +149,6 @@ def main():
             if int(inputs[0])==1: #opcion 1
                 lista = loadCSVFile("Data/Small.csv") #llamar funcion cargar datos
                 print("Datos cargados, ",lista['size']," elementos cargados")
-                
-                
             elif int(inputs[0])==2: #opcion 2
                 if lista==None or lista['size']==0: #obtener la longitud de la lista
                     print("La lista esta vacía")    
@@ -152,9 +170,43 @@ def main():
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
             elif int(inputs[0])==5:
-                sorting_shell(lista)
+                tipo_ordenamiento= input('si desea ordenar por shell sort oprima 0,\nsi desea ordenar por inserionsort oprima 1,\nsi desea ordenar por selectionsort oprima 2,\n')
+                if int(tipo_ordenamiento)==0:
+                    comando= input('si desea ordenar la lista de menor a mayor oprima 0, \nsi desea ordenar la lista  de mayor a menor oprima 1\n')
+                    if int(comando)==0:
+                        print('ordenando lista...')
+                        sorting_shell(lista, less)
+                        print('lista ordenada')
+                    elif int(comando)==1:
+                        print('ordenando lista...')
+                        sorting_shell(lista, greater)
+                        print('lista ordenada')
+                elif int(tipo_ordenamiento)==1:
+                    comando= input('si desea ordenar la lista de menor a mayor oprima 0, \nsi desea ordenar la lista  de mayor a menor oprima 1\n')
+                    if int(comando)==0:
+                        print('ordenando lista...')
+                        sorting_insertion(lista, less)
+                        print('lista ordenada')
+                    elif int(comando)==1:
+                        print('ordenando lista...')
+                        sorting_insertion(lista, greater)
+                        print('lista ordenada')
+                elif int(tipo_ordenamiento)==2:
+                    comando= input('si desea ordenar la lista de menor a mayor oprima 0, \nsi desea ordenar la lista  de mayor a menor oprima 1\n')
+                    if int(comando)==0:
+                        print('ordenando lista...')
+                        sorting_selection(lista, less)
+                        print('lista ordenada')
+                    elif int(comando)==1:
+                        print('ordenando lista...')
+                        sorting_selection(lista, greater)
+                        print('lista ordenada')
             elif int(inputs[0])==6:
-                print(verifySorting(lista, less))
+                comando=input('si desea revisar la lista de menor a mayor oprima 0,\nsi desea de mayor a menor oprima 1\n')
+                if int(comando)==0:
+                    print(verifySorting(lista, less))
+                elif int(comando)==1:
+                    print(verifySorting(lista, greater))
                 #print(lista['first'])
                 #for element in lista:
                     #print(element)
