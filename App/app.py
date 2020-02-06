@@ -97,11 +97,11 @@ def countElementsByCriteria(criteria, column, lst):
     """
     return 0
 def less(element1, element2):
-        if int(element1['id']) <  int(element2['id']):
+        if int(element1['vote_count']) <  int(element2['vote_count']):
             return True
         return False
 def greater(element1, element2):
-        if int(element1['id']) >  int(element2['id']):
+        if int(element1['vote_average']) >  int(element2['vote_average']):
             return True
         return False
 def sorting_shell(lst, compFunction):
@@ -172,7 +172,7 @@ def main():
             elif int(inputs[0])==5:
                 tipo_ordenamiento= input('si desea ordenar por shell sort oprima 0,\nsi desea ordenar por inserionsort oprima 1,\nsi desea ordenar por selectionsort oprima 2,\n')
                 if int(tipo_ordenamiento)==0:
-                    comando= input('si desea ordenar la lista de menor a mayor oprima 0, \nsi desea ordenar la lista  de mayor a menor oprima 1\n')
+                    comando= input('si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
                     if int(comando)==0:
                         print('ordenando lista...')
                         sorting_shell(lista, less)
@@ -182,7 +182,7 @@ def main():
                         sorting_shell(lista, greater)
                         print('lista ordenada')
                 elif int(tipo_ordenamiento)==1:
-                    comando= input('si desea ordenar la lista de menor a mayor oprima 0, \nsi desea ordenar la lista  de mayor a menor oprima 1\n')
+                    comando= input('si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
                     if int(comando)==0:
                         print('ordenando lista...')
                         sorting_insertion(lista, less)
@@ -192,7 +192,7 @@ def main():
                         sorting_insertion(lista, greater)
                         print('lista ordenada')
                 elif int(tipo_ordenamiento)==2:
-                    comando= input('si desea ordenar la lista de menor a mayor oprima 0, \nsi desea ordenar la lista  de mayor a menor oprima 1\n')
+                    comando= input('si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
                     if int(comando)==0:
                         print('ordenando lista...')
                         sorting_selection(lista, less)
@@ -202,7 +202,7 @@ def main():
                         sorting_selection(lista, greater)
                         print('lista ordenada')
             elif int(inputs[0])==6:
-                comando=input('si desea revisar la lista de menor a mayor oprima 0,\nsi desea de mayor a menor oprima 1\n')
+                comando=input('si desea revisar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea revisar la lista  de mayor a menor Vote average oprima 1\n')
                 if int(comando)==0:
                     print(verifySorting(lista, less))
                 elif int(comando)==1:
