@@ -46,7 +46,7 @@ def loadCSVFile (file, sep=";"):
     """
     #lst = lt.newList("ARRAY_LIST") #Usando implementacion arraylist
     lst = lt.newList() #Usando implementacion linkedlist
-    print("Cargando archivo ....")
+    print("Cargando archivo...")
     t1_start = process_time() #tiempo inicial
     dialect = csv.excel()
     dialect.delimiter=sep
@@ -63,13 +63,13 @@ def printMenu():
     """
     Imprime el menu de opciones
     """
-    print("\nBienvenido")
+    print("\nBienvenido\n")
     print("1- Cargar Datos")
     print("2- Contar los elementos de la Lista")
     print("3- Contar elementos filtrados por palabra clave")
     print("4- Consultar elementos a partir de dos listas")
-    print('5- ordenar lista')
-    print('6-verificar ordenamiento')
+    print('5- Ordenar lista')
+    print('6- Verificar ordenamiento')
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -101,7 +101,7 @@ def less(element1, element2):
             return True
         return False
 def greater(element1, element2):
-        if int(element1['vote_average']) >  int(element2['vote_average']):
+        if float(element1['vote_average']) >  float(element2['vote_average']):
             return True
         return False
 def sorting_shell(lst, compFunction):
@@ -144,7 +144,7 @@ def main():
     lista = None 
     while True:
         printMenu() #imprimir el menu de opciones en consola
-        inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
+        inputs =input('\nSeleccione una opción para continuar: ') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
                 lista = loadCSVFile("Data/Small.csv") #llamar funcion cargar datos
@@ -155,7 +155,7 @@ def main():
                 else: print("La lista tiene ",lista['size']," elementos")
             elif int(inputs[0])==3: #opcion 3
                 if lista==None or lista['size']==0: #obtener la longitud de la lista
-                    print("La lista esta vacía")
+                    print("La lista está vacía")
                 else:   
                     criteria =input('Ingrese el criterio de búsqueda\n')
                     counter=countElementsFilteredByColumn(criteria, "nombre", lista) #filtrar una columna por criterio  
@@ -170,39 +170,39 @@ def main():
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
             elif int(inputs[0])==5:
-                tipo_ordenamiento= input('si desea ordenar por shell sort oprima 0,\nsi desea ordenar por inserionsort oprima 1,\nsi desea ordenar por selectionsort oprima 2,\n')
+                tipo_ordenamiento= input('Si desea ordenar por shell sort oprima 0,\nsi desea ordenar por inserionsort oprima 1,\nsi desea ordenar por selectionsort oprima 2,\n')
                 if int(tipo_ordenamiento)==0:
-                    comando= input('si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
+                    comando= input('Si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
                     if int(comando)==0:
-                        print('ordenando lista...')
+                        print('Ordenando lista...')
                         sorting_shell(lista, less)
-                        print('lista ordenada')
+                        print('Lista ordenada')
                     elif int(comando)==1:
-                        print('ordenando lista...')
+                        print('Ordenando lista...')
                         sorting_shell(lista, greater)
-                        print('lista ordenada')
+                        print('Lista ordenada')
                 elif int(tipo_ordenamiento)==1:
-                    comando= input('si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
+                    comando= input('Si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
                     if int(comando)==0:
-                        print('ordenando lista...')
+                        print('Ordenando lista...')
                         sorting_insertion(lista, less)
-                        print('lista ordenada')
+                        print('Lista ordenada')
                     elif int(comando)==1:
-                        print('ordenando lista...')
+                        print('Ordenando lista...')
                         sorting_insertion(lista, greater)
-                        print('lista ordenada')
+                        print('Lista ordenada')
                 elif int(tipo_ordenamiento)==2:
-                    comando= input('si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
+                    comando= input('Si desea ordenar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea ordenar la lista  de mayor a menor Vote average oprima 1\n')
                     if int(comando)==0:
-                        print('ordenando lista...')
+                        print('Ordenando lista...')
                         sorting_selection(lista, less)
-                        print('lista ordenada')
+                        print('Lista ordenada')
                     elif int(comando)==1:
-                        print('ordenando lista...')
+                        print('Ordenando lista...')
                         sorting_selection(lista, greater)
-                        print('lista ordenada')
+                        print('Lista ordenada')
             elif int(inputs[0])==6:
-                comando=input('si desea revisar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea revisar la lista  de mayor a menor Vote average oprima 1\n')
+                comando=input('Si desea revisar la lista de menor a mayor cantidad de votos oprima 0, \nsi desea revisar la lista  de mayor a menor Vote average oprima 1\n')
                 if int(comando)==0:
                     print(verifySorting(lista, less))
                 elif int(comando)==1:
@@ -213,7 +213,6 @@ def main():
 
 
                 
-                
-                
+                         
 if __name__ == "__main__":
     main()
